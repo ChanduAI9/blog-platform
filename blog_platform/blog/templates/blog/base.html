@@ -1,0 +1,16 @@
+<!-- blog/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Platform</title>
+</head>
+<body>
+  <header>
+    <h1><a href="{% url 'post_list' %}">Blog Platform</a></h1>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

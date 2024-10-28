@@ -1,0 +1,28 @@
+<!-- blog/templates/blog/post_detail.html -->
+{% extends "blog/base.html" %}
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.content }}</p>
+  <p>Posted on: {{ post.created_at }}</p>
+
+  <!-- Edit and Delete Options -->
+  <a href="{% url 'post_update' pk=post.pk %}">Edit Post</a> |
+  <a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a>
+
+  <h2>Comments</h2>
+  <ul>
+    {% for comment in post.comments.all %}
+      <li>{{ comment.text }} - {{ comment.created_at }}</li>
+    {% empty %}
+      <li>No comments yet.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Add a Comment</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}
